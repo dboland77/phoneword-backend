@@ -5,6 +5,7 @@
  ## Stack
  1. Node.js
  2. Hapi.js
+ 3. qs.js
 
 
 # Notes / Issues
