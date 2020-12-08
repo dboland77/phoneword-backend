@@ -1,0 +1,22 @@
+{
+  "name": "phoneword-backend",
+  "version": "1.0.0",
+  "description": "Hapi API backend for t9 phoneword prediction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dboland77/phoneword-backend.git"
+  },
+  "author": "Dave Boland",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dboland77/phoneword-backend/issues"
+  },
+  "homepage": "https://github.com/dboland77/phoneword-backend#readme",
+  "dependencies": {
+    "hapi": "^18.1.0"
+  }
+}
