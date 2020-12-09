@@ -10,6 +10,11 @@ For example given the input 23 the output will be ad,ae,af,bd,be,bf,cd,ce,cf.
 1. Clone this repo
 1. In the project folder run npm install to install the package dependencies. Please check peer dependencies
 1. The code uses ECMAScript so please make sure that your node version is >= 14
+1. The API will run at localhost: 4000
+1. The API takes one query parameter called num which will be interpreted to text. For example:
+localhost:4000/?num=322
+1. This will return all possible combinations for 
+the number entered
 
 # Testing
 

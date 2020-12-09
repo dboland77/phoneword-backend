@@ -1,6 +1,5 @@
-import { checkThisWorks } from "./src/controllers/textalgorithm.js";
+import { telephoneWords } from "./src/controllers/textalgorithm.js";
 import Hapi from "@hapi/hapi";
-//import Qs from 'qs'; //querystring parse/stringify
 
 ("use strict");
 
@@ -8,25 +7,20 @@ import Hapi from "@hapi/hapi";
 const server = Hapi.server({
   host: "localhost",
   port: 4000,
-  // query: {
-  //   parser: (query) => Qs.parse(query)
-  // }
 });
+
+// Add our t9 processor to the server as a method
+server.method("phonewords", telephoneWords);
 
 // Add a GET route
 server.route({
   method: "GET",
-  path: "/{user?}",
-  handler: (request, h) => {
-    //const user = request.params.user ? request.params.user : 'stranger';
-
-    return `Hello ${request.query.user}!`;
+  path: "/{num?}",
+  handler: (request, reply) => {
+    return server.methods.phonewords(request.query.num);
   },
 });
 
-server.method('check', checkThisWorks)
-
-server.methods.check();
 // Standard query better
 // http://localhost:4000/?user=johnny
 
