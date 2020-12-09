@@ -6,7 +6,10 @@ import Hapi from "@hapi/hapi";
 // Add the ability to query our endpoint
 const server = Hapi.server({
   host: "localhost",
-  port: 4000,
+  port: 8000,
+  routes: {
+    cors: true
+  }
 });
 
 // Add our t9 processor to the server as a method
