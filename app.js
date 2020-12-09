@@ -1,7 +1,8 @@
-"use strict";
+import { checkThisWorks } from "./src/controllers/textalgorithm.js";
+import Hapi from "@hapi/hapi";
+//import Qs from 'qs'; //querystring parse/stringify
 
-const Hapi = require("@hapi/hapi");
-//const Qs = require('qs'); //querystring parse/stringify
+("use strict");
 
 // Add the ability to query our endpoint
 const server = Hapi.server({
@@ -23,11 +24,12 @@ server.route({
   },
 });
 
+server.method('check', checkThisWorks)
+
+server.methods.check();
 // Standard query better
 // http://localhost:4000/?user=johnny
 
-// Example query (per docs)
-// http://localhost:4000/?foo[bar]=baz
 // Command line or postman
 const init = async () => {
   // Set the connection parameters
