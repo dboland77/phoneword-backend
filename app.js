@@ -1,4 +1,5 @@
-import { telephoneWords } from "./src/controllers/textalgorithm.js";
+//import { telephoneWords } from "./src/controllers/textalgorithm.js";
+import { telephoneWords } from "./src/controllers/trieclass";
 import Hapi from "@hapi/hapi";
 
 ("use strict");
