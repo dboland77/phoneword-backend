@@ -1,5 +1,5 @@
 //import { telephoneWords } from "./src/controllers/textalgorithm.js";
-import { telephoneWords } from "./src/controllers/trieclass";
+import { phoneWords, loadDictionary } from "./src/controllers/index.js";
 import Hapi from "@hapi/hapi";
 
 ("use strict");
@@ -9,12 +9,13 @@ const server = Hapi.server({
   host: "localhost",
   port: 8000,
   routes: {
-    cors: true
-  }
+    cors: true,
+  },
 });
 
-// Add our t9 processor to the server as a method
-server.method("phonewords", telephoneWords);
+// Add our utility functions to the server as methods
+server.method("phonewords", phoneWords);
+server.method("loadDictionary", loadDictionary);
 
 // Add a GET route
 server.route({
@@ -29,13 +30,14 @@ server.route({
 // http://localhost:4000/?user=johnny
 
 // Command line or postman
-const init = async () => {
+const initServer = async () => {
   // Set the connection parameters
   // This is not going to be deployed so I am
   // setting to run on localhost 4000 (React likes 3000)
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);
+  server.methods.loadDictionary();
 };
 
 process.on("unhandledRejection", (err) => {
@@ -43,4 +45,4 @@ process.on("unhandledRejection", (err) => {
   process.exit(1);
 });
 
-init();
+initServer();

@@ -58,6 +58,8 @@ localhost:4000/?num=322
 
 1. The API could be extended to interpret full messages
 
+1. Case sensitivity could be introduced
+
 1. The word list could be provided by API, or database rather than hardcoded
 
 1. For deployment it would need: Authorisation, Testing, cahching, better error handling (Boom plugin) , validation, cookies, process monitoring (Good plugin)

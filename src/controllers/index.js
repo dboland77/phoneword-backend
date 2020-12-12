@@ -2,61 +2,81 @@ import fs from "fs";
 import { KEYPAD, FILENAME } from "../constants/constants.js";
 import Trie from "./trieclass.js";
 
-//read in the dictionary as a filestream as this is faster
+let dictionary = "";
+let myTrie = new Trie();
+let words = [];
 
-let data = "";
-// let myTrie = new Trie();
-// myTrie.add("ant");
-// myTrie.add("ace");
-// myTrie.print();
+const loadDictionary = () => {
+  console.log("initialising dictionary");
 
-// This function takes the current array of results and
-// the options for the next digit
-// It iterates through each existing result and concatenates on
-// each of the digit's letter options in turn and pushes to a
-// new results array that is returned
+  const readStream = fs.createReadStream(FILENAME, "utf8");
 
-// const addDigit = (array, options) => {
-//   const newArray = [];
+  readStream
+    .on("data", function (chunk) {
+      dictionary += chunk;
+    })
+    .on("end", function () {
+      words = dictionary.split(/\s+/g);
 
-//   for (let i = 0; i < array.length; i++) {
-//     const subSolution = array[i];
-//     for (let x = 0; x < options.length; x++) {
-//       const letter = options[x];
-//       newArray.push(subSolution.concat(letter));
-//     }
-//   }
-//   return newArray;
-// };
+      for (let word of words) {
+        myTrie.add(word);
+      }
 
-const readStream = fs.createReadStream(FILENAME, "utf8");
+      console.log("dictionary loaded");
+    })
+    .on("error", function () {
+      console.log("error loading dictionary");
+    });
+};
 
-readStream
-  .on("data", function (chunk) {
-    data += chunk;
-  })
-  .on("end", function () {
-    console.log(data)
-  });
+const addDigit = (array, options) => {
+  const newArray = [];
 
-const telephoneWords = (digitString) => {
+  for (let i = 0; i < array.length; i++) {
+    const subSolution = array[i];
+    for (let x = 0; x < options.length; x++) {
+      const letter = options[x];
+      newArray.push(subSolution.concat(letter));
+    }
+  }
+  return newArray;
+};
+
+const phoneWords = (digitString) => {
   if (!digitString || digitString == "") {
     return "Nothing entered";
   }
 
-  let result = [""];
+  let results = [""];
 
+  //first add the possble combinations
   for (let digit = 0; digit < digitString.length; digit++) {
     const thisDigit = digitString[digit];
 
     if (!parseInt(thisDigit) && parseInt(thisDigit) != 0) {
       return "Please only enter numbers!";
     }
-
-    result = addDigit(result, KEYPAD[thisDigit]);
+    results = addDigit(results, KEYPAD[thisDigit].toLowerCase());
   }
 
-  return result;
+  //then check against the dictionary which are valid
+  results = checkDictionary(results);
+
+  return results;
 };
 
-export { telephoneWords };
+const checkDictionary = (words) => {
+  let realWords = [];
+
+  for (let w of words) {
+    let test = myTrie.find(w);
+
+    if (test !== null && test.isLeaf) {
+      realWords.push(w);
+    }
+  }
+
+  return realWords;
+};
+
+export { phoneWords, loadDictionary };
