@@ -1,4 +1,4 @@
-import KEYPAD from "./constants/constants";
+import KEYPAD from "../constants/constants";
 
 // This function takes the current array of results and
 // the options for the next digit

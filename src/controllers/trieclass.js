@@ -1,4 +1,4 @@
-class Trie {
+export default class Trie {
   constructor() {
     this.trie = null;
     this.suggestions = [];
@@ -80,7 +80,4 @@ class Trie {
   }
 }
 
-let myTrie = new Trie();
-myTrie.add("ant");
-myTrie.add("ace");
-console.log(myTrie);
+
