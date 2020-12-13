@@ -1,6 +1,6 @@
 # Overview
 
-This will be the backend for the t9 phoneword frontend.
+This is the backend for the t9 phoneword React frontend.
 
 The API implements a number to word converter in the style of an old T9 mobile phone.
 
@@ -12,7 +12,10 @@ Enhanced:
 1. I have enhanced this to use prediction via a pre-loaded
 dictionary.
 
-1. The al
+1. I use a prefix-tree (Trie) data structure to implement the word filtering
+
+1. I use a file stream to read the dictionary.txt file
+
 
 # To run
 
@@ -29,12 +32,12 @@ localhost:4000/?num=322
 1. API endpoint was tested with various values of the input parameter
 1. API endpoint tested directly in the URL bar
 1. Also tested using Postman
+1. Manual testing of the frontend
 
 # Stack
 
 1.  Node.js
 1.  Hapi.js
-1.  qs.js
 
 # Notes / Issues
 
@@ -68,4 +71,6 @@ localhost:4000/?num=322
 
 1. The models folder should contain relevant schema (for database objects mapped to http GET/POST/PUT/DELETE)
 
-1. Very basic testing has been performed this would need full testing. 
+1. Very basic testing has been performed this would need full testing.
+
+1. My Trie class can implement auto-complete but this is not turned on.
