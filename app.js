@@ -6,7 +6,7 @@ import Hapi from "@hapi/hapi";
 
 // Add the ability to query our endpoint
 const server = Hapi.server({
-  host: "localhost",
+  // host: "localhost", causes a problem on Heroku
   port: process.env.PORT,
   routes: {
     cors: true,
