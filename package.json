@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/dboland77/phoneword-backend#readme",
   "dependencies": {
-    "@hapi/hapi": "^20.0.3"
+    "@hapi/hapi": "^20.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.7"
   }
 }
