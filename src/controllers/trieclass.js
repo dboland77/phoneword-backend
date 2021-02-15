@@ -4,6 +4,8 @@ export default class Trie {
     this.suggestions = [];
   }
 
+  //this.trie is really the current root node .. 
+  // the isLeaf is abit of a misnomer it should be isWord. 
   newNode() {
     return {
       isLeaf: false,
@@ -38,6 +40,8 @@ export default class Trie {
     return root;
   }
 
+  // recursive search. Starts at root - looks for first letter 
+  // then continues down to the children of that node etc..
   traverse(root, word) {
     if (root.isLeaf) {
       this.suggestions.push(word);

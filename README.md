@@ -24,7 +24,7 @@ dictionary.
 1. The code uses ECMAScript so please make sure that your node version is >= 14
 1. The API will run at localhost: 4000
 1. The API takes one query parameter called num which will be interpreted to text. For example:
-localhost:4000/?num=322
+localhost:8000/?num=322
 
 
 # Testing
@@ -65,7 +65,7 @@ localhost:4000/?num=322
 
 1. The word list could be provided by API, or database rather than hardcoded
 
-1. For deployment it would need: Authorisation, Testing, cahching, better error handling (Boom plugin) , validation, cookies, process monitoring (Good plugin)
+1. For deployment it would need: Authorisation, Testing, caching, better error handling (Boom plugin) , validation, cookies, process monitoring (Good plugin)
 
 1. env variables and API setup for production not considered here - just localhost. 
 

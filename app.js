@@ -7,7 +7,7 @@ import Hapi from "@hapi/hapi";
 // Add the ability to query our endpoint
 const server = Hapi.server({
   host: "localhost",
-  port: 8000,
+  port: process.env.PORT,
   routes: {
     cors: true,
   },
@@ -26,14 +26,11 @@ server.route({
   },
 });
 
-// Standard query better
-// http://localhost:4000/?user=johnny
-
 // Command line or postman
 const initServer = async () => {
   // Set the connection parameters
   // This is not going to be deployed so I am
-  // setting to run on localhost 4000 (React likes 3000)
+  // setting to run on localhost 8000 (React likes 3000)
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);
