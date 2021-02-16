@@ -9,7 +9,9 @@ const server = Hapi.server({
   // host: "localhost", causes a problem on Heroku
   port: process.env.PORT,
   routes: {
-    cors: true,
+    cors: {
+      origin: ["*"],
+    },
   },
 });
 
